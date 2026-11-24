@@ -1,0 +1,17 @@
+<script lang="ts">
+  import './layout.css';
+  import { ModeWatcher } from "mode-watcher";
+  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import AppSidebar from "$lib/components/app-sidebar.svelte";
+
+  const { children } = $props();
+</script>
+
+<ModeWatcher />
+<Sidebar.Provider>
+ <AppSidebar />
+ <main class="relative flex min-h-screen w-full items-center justify-center bg-background p-4">
+    <Sidebar.Trigger class="absolute left-0 top-0 z-50" />
+  {@render children?.()}
+ </main>
+</Sidebar.Provider>
