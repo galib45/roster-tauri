@@ -22,7 +22,7 @@ export type Organization = {
 	employees: Employee[],
 	shifts: Shift[],
 	roster_templates: RosterTemplate[],
-	roster: Roster[],
+	rosters: Roster[],
 };
 
 export type Position = {

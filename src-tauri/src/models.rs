@@ -16,7 +16,7 @@ pub struct Organization {
     pub employees: Vec<Employee>,
     pub shifts: Vec<Shift>,
     pub roster_templates: Vec<RosterTemplate>,
-    pub roster: Vec<Roster>,
+    pub rosters: Vec<Roster>,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, specta::Type)]
