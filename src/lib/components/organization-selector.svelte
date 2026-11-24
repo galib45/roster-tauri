@@ -3,14 +3,16 @@
     import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import { Check, ChevronDown, Plus, BuildingComplex } from "@lucide/svelte";
+    import type { Organization } from "$lib/bindings";
 
-  let selectedOrganization = $state("City Hospital");
+  let { organizations }: { organizations: Organization[] } = $props();
+  let selectedOrganization = $state(organizations[0].name);
 
-  const organizations = [
-    "City Hospital",
-    "Central Hospital",
-    "Community Clinic",
-  ];
+  // const organizations = [
+  //   "City Hospital",
+  //   "Central Hospital",
+  //   "Community Clinic",
+  // ];
 </script>
 
 <DropdownMenu.Root>
@@ -45,11 +47,11 @@
 
       {#each organizations as organization}
         <DropdownMenu.Item
-          onclick={() => (selectedOrganization = organization)}
+          onclick={() => (selectedOrganization = organization.name)}
         >
           <span class="flex-1">{organization}</span>
 
-          {#if selectedOrganization === organization}
+          {#if selectedOrganization === organization.name}
             <Check class="size-4" />
           {/if}
         </DropdownMenu.Item>

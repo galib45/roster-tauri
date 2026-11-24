@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { invoke } from "@tauri-apps/api/core";
+  import { commands } from "$lib/bindings";
 
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
@@ -21,9 +21,7 @@
     greetMsg = "";
 
     try {
-      greetMsg = await invoke<string>("greet", {
-        name: name.trim(),
-      });
+      greetMsg = await commands.greet(name.trim());
     } catch (err) {
       error = String(err);
     } finally {
@@ -52,7 +50,7 @@
         <img src="/svelte.svg" class="h-12 w-12" alt="Svelte" />
       </div>
 
-      <form onsubmit={greet} class="flex space-x-3">
+      <form onsubmit={ greet } class="flex space-x-3">
         <Input id="greet-input" placeholder="Enter your name..." bind:value={name} />
         <Button type="submit" class="px-16" disabled={loading || !name.trim()} >
           {loading ? "Greeting..." : "Greet"}

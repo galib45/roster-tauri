@@ -4,6 +4,15 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import AppSidebar from "$lib/components/app-sidebar.svelte";
 
+  import { getAppState, setProjectContext } from "$lib/state.svelte";
+    import { onMount } from 'svelte';
+
+let appState = getAppState();
+setProjectContext(appState);
+onMount(() => {
+    appState.load();
+});
+
   const { children } = $props();
 </script>
 

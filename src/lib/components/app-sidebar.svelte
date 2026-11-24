@@ -11,9 +11,12 @@
 
    import { useSidebar } from "$lib/components/ui/sidebar/index.js";
 
+   const appState = getAppState();
+
      const sidebar = useSidebar();
 
     import SidebarButtonWithLink from "./sidebar-button-with-link.svelte";
+    import { getAppState, hasOrganization } from "$lib/state.svelte";
 
  const organizationsNavItem = {
    title: "Organizations", icon: BuildingComplexIcon, url: "/organizations"
@@ -59,8 +62,8 @@
     </Sidebar.MenuItem>
     </Sidebar.Menu>
     <!-- Organization selector -->
-    {#if sidebar.state === "expanded"}
-    <OrganizationSelector/>
+    {#if sidebar.state === "expanded" && hasOrganization(appState)}
+        <OrganizationSelector organizations={ appState.project?.organizations } />
     {/if}
  </Sidebar.Header>
  <Sidebar.Content>
