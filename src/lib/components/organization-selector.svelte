@@ -3,9 +3,10 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import { Check, ChevronDown, Plus } from "@lucide/svelte";
-  import { getProjectContext } from "$lib/state.svelte";
+  import { getAppState } from "$lib/state.svelte";
+    import { goto } from "$app/navigation";
 
-  const appState = getProjectContext();
+  const appState = getAppState();
 </script>
 
 <DropdownMenu.Root>
@@ -20,9 +21,9 @@
     {/snippet}
   </DropdownMenu.Trigger>
 
-  <DropdownMenu.Content class="w-60" align="start">
+  <DropdownMenu.Content align="start">
     <DropdownMenu.Group>
-      <DropdownMenu.Label>Switch organization</DropdownMenu.Label>
+      <DropdownMenu.Label>Select organization</DropdownMenu.Label>
 
       {#each appState.organizations as organization (organization.id)}
         <DropdownMenu.Item
@@ -39,7 +40,7 @@
 
     <DropdownMenu.Separator />
 
-    <DropdownMenu.Item>
+    <DropdownMenu.Item onclick={() => goto("/organizations/new")}>
       <Plus class="size-4" />
       Add organization
     </DropdownMenu.Item>

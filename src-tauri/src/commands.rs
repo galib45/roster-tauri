@@ -11,7 +11,7 @@ pub fn greet(name: &str) -> String {
 #[tauri::command]
 #[specta::specta]
 pub async fn load_project() -> Project {
-    Project {
+    let project = Project {
         organizations: vec![Organization {
             id: Uuid::now_v7(),
             name: "UHC, Sreepur, Magura".into(),
@@ -21,5 +21,6 @@ pub async fn load_project() -> Project {
             roster_templates: Vec::new(),
             rosters: Vec::new(),
         }],
-    }
+    };
+    return project;
 }

@@ -3,12 +3,12 @@
 use chrono::{DateTime, NaiveDate, NaiveTime, Utc};
 use uuid::Uuid;
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Project {
     pub organizations: Vec<Organization>,
 }
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Organization {
     pub id: Uuid,
     pub name: String,
@@ -19,13 +19,13 @@ pub struct Organization {
     pub rosters: Vec<Roster>,
 }
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Position {
     pub id: Uuid,
     pub name: String,
 }
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Employee {
     pub id: Uuid,
     pub name: String,
@@ -35,7 +35,7 @@ pub struct Employee {
     // assignments
 }
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Shift {
     pub id: Uuid,
     pub name: String,
@@ -46,7 +46,7 @@ pub struct Shift {
     // weekdays
 }
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct RosterTemplate {
     pub id: Uuid,
     pub name: String,
@@ -58,7 +58,7 @@ pub struct RosterTemplate {
     // sharing_groups
 }
 
-#[derive(serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Roster {
     pub id: Uuid,
     pub name: String,
