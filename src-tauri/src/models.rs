@@ -3,7 +3,7 @@
 use chrono::{DateTime, NaiveDate, NaiveTime, Utc};
 use uuid::Uuid;
 
-#[derive(Debug, serde::Serialize, serde::Deserialize, specta::Type)]
+#[derive(Debug, Default, serde::Serialize, serde::Deserialize, specta::Type)]
 pub struct Project {
     pub organizations: Vec<Organization>,
 }

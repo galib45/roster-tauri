@@ -28,53 +28,56 @@
         </Button>
     </div>
 </div>
+{#if appState.hasOrganization}
+    <Field.Field class="w-full">
+    	<!-- <Field.Label for="inline-start-input">Input</Field.Label> -->
+    	<InputGroup.Root>
+    		<InputGroup.Input
+    		    id="inline-start-input" class="text-sm"
+    			placeholder="Search organizations..." />
+    		<InputGroup.Addon align="inline-start">
+    			<SearchIcon class="text-muted-foreground" />
+    		</InputGroup.Addon>
+    	</InputGroup.Root>
+    	<!-- <Field.Description>Icon positioned at the start.</Field.Description> -->
+    </Field.Field>
 
-<Field.Field class="w-full">
-	<!-- <Field.Label for="inline-start-input">Input</Field.Label> -->
-	<InputGroup.Root>
-		<InputGroup.Input
-		    id="inline-start-input" class="text-sm"
-			placeholder="Search organizations..." />
-		<InputGroup.Addon align="inline-start">
-			<SearchIcon class="text-muted-foreground" />
-		</InputGroup.Addon>
-	</InputGroup.Root>
-	<!-- <Field.Description>Icon positioned at the start.</Field.Description> -->
-</Field.Field>
+    <div class="rounded-md border">
+        <Table.Root class="select-none">
+            <Table.Header>
+                {#each table.getHeaderGroups() as headerGroup}
+                    <Table.Row>
+                        {#each headerGroup.headers as header}
+                            <Table.Head>
+                                {#if !header.isPlaceholder}
+                                    <FlexRender {header} />
+                                {/if}
+                            </Table.Head>
+                        {/each}
+                    </Table.Row>
+                {/each}
+            </Table.Header>
 
-<div class="rounded-md border">
-    <Table.Root>
-        <Table.Header>
-            {#each table.getHeaderGroups() as headerGroup}
-                <Table.Row>
-                    {#each headerGroup.headers as header}
-                        <Table.Head>
-                            {#if !header.isPlaceholder}
-                                <FlexRender {header} />
-                            {/if}
-                        </Table.Head>
-                    {/each}
-                </Table.Row>
-            {/each}
-        </Table.Header>
-
-        <Table.Body>
-            {#each table.getRowModel().rows as row}
-                <Table.Row>
-                    {#each row.getAllCells() as cell}
-                        <Table.Cell>
-                            <FlexRender {cell} />
+            <Table.Body>
+                {#each table.getRowModel().rows as row}
+                    <Table.Row>
+                        {#each row.getAllCells() as cell}
+                            <Table.Cell>
+                                <FlexRender {cell} />
+                            </Table.Cell>
+                        {/each}
+                    </Table.Row>
+                {:else}
+                    <Table.Row>
+                        <Table.Cell colspan={columns.length}>
+                            No organizations found.
                         </Table.Cell>
-                    {/each}
-                </Table.Row>
-            {:else}
-                <Table.Row>
-                    <Table.Cell colspan={columns.length}>
-                        No organizations found.
-                    </Table.Cell>
-                </Table.Row>
-            {/each}
-        </Table.Body>
-    </Table.Root>
-</div>
+                    </Table.Row>
+                {/each}
+            </Table.Body>
+        </Table.Root>
+    </div>
+{:else}
+    <div>No organizations found. Start by adding one.</div>
+{/if}
 </div>

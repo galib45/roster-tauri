@@ -6,6 +6,7 @@
 
   import { AppState, setAppState } from "$lib/state.svelte";
   import { onMount } from 'svelte';
+    import { Button } from '$lib/components/ui/button';
 
   let appState = new AppState;
   setAppState(appState);
@@ -17,16 +18,14 @@
 <ModeWatcher />
 <Sidebar.Provider>
  <AppSidebar />
- <main class="relative flex min-h-screen w-full bg-background pl-6 py-4">
-    <Sidebar.Trigger class="absolute left-0 top-3 z-50" />
+ <main class="flex min-h-screen w-full bg-background py-4">
+    <!-- <Sidebar.Trigger class="fixed left-(--sidebar-width) top-0 z-50 rounded-r-md border border-l-0 bg-background/90 shadow-md backdrop-blur-md" /> -->
     {#if appState.loading}
         <p>Loading project...</p>
     {:else if appState.error}
-        <div class="text-center">
-        <p class="text-destructive">{appState.error}</p>
-        <button onclick={appState.load}>
-            Retry
-        </button>
+        <div class="text-center w-full space-y-2">
+            <p class="text-destructive">{appState.error}</p>
+            <Button onclick={appState.load}>Retry</Button>
         </div>
     {:else}
         {@render children?.()}

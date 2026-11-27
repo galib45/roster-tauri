@@ -40,17 +40,19 @@
      <!-- App branding -->
     <Sidebar.Menu>
     <Sidebar.MenuItem>
-        <Sidebar.MenuButton size="lg">
+        <Sidebar.MenuButton size="lg" onclick={() => sidebar.toggle()}>
         <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <ClipboardList class="size-4" />
         </div>
 
+        {#if sidebar.state === "expanded"}
         <div class="flex flex-col gap-0.5">
             <span class="font-semibold">Roster Manager</span>
             <span class="text-xs text-muted-foreground">
             Workforce Management
             </span>
         </div>
+        {/if}
         </Sidebar.MenuButton>
     </Sidebar.MenuItem>
     </Sidebar.Menu>
